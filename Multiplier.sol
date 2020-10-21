@@ -1,0 +1,1 @@
+/* Même principe mais pour une multiplication.*/
