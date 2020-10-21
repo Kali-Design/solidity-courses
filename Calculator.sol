@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.7.3;
+
 /* Créer un contrat Calculator.
 Ce contrat devra posséder 4 fonctions: add, sub, mul, div.
 Ces 4 fonctions prennent chacune en paramètres 2 uint.

@@ -5,14 +5,16 @@ pragma experimental ABIEncoderV2
 contract ContactPeople {
 
     struct EveryBody {
-         string public name = x; 
-         string public email = x;
-         string public phone = x;
+         string name; 
+         string email;
+         string phone;
+        }   
 
-         function getContact() public returns (struct) {
-        return storedData;
+        Person private owner
+         function getContact (string _name, string memory _addr, string memory _email) public {
+             owner = Person(_ name, _addr, _email)
+         }
     }
-
     /* Ecrivez un contrat Contact qui permettra d'enregistrer ou de récupérer des info sur un contact 
     en fonction de son adresse Ethereum. Les informations pour chaque contact seront stockées dans une 
     struct avec les champs suivants: string name, string email, string phone.

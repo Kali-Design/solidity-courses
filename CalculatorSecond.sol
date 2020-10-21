@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.7.3;
+
 /* Rentabiliser le contrat Calculator, toutes les opérations de calculs, cad l'appel des fonctions add, sub, mul, div 
 du contrat Calculator, couteront désormais 0.01 CALK.
 Pour cela il faudra que l'utilisateur approve l'adresse du contrat Calculator dans CalcToken. Ainsi lors d'une 

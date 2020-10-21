@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.7.3;
 
 /* Il y a une faille dans notre architecture. Des utilisateurs peuvent toujours effectuer des opérations de calculs en appelant directement les contrats Adder, Suber, Multiplier et Divisor Pour chacun des contrats ci dessus ajouter un modifier onlyAddress qui n'autorisera que l'adresse de Calculator à les appeler.
 L'adresse de Calculator sera renseigné par une fonction setCalculatorAddress qui ne sera exécuté que par un admin.
