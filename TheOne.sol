@@ -5,4 +5,6 @@ contract TheOne {
    string public One = "1";   
 }
 
+//Ecrivez un contrat TheOne. Ce contrat devra posséder une fonction one qui retournera le nombre 1 lorsqu'elle sera appelée.
+
 // https://rinkeby.etherscan.io/tx/0xa15f94cbaadc732e103837cce7f9f2a2dbe34f101ffeea2e2689d9bbfd5a7136
