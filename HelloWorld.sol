@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.7.3;
+pragma solidity ^0.6.0;
+
 contract HelloWorld {
-    string public hello = "Hello world"; 
+
+    string private bonjour = "Hello World !";
+
+    function hello() public view returns(string memory) {
+        return bonjour;
+    }
 }
-
-
-//Ecrivez un contrat HelloWorld.
-//Ce contrat devra posséder une fonction hello qui retournera la string "Hello world!" lorsqu'elle sera appelée.
-
-//https://rinkeby.etherscan.io/tx/0x563c6c814a07b462b77c2f285d13394765296fb864bef12379a06841a3e06618
