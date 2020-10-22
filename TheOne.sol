@@ -1,10 +1,13 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.7.3;
+pragma solidity ^0.6.0;
 
 contract TheOne {
-   string public One = "1";   
+   adress private _me = 0x461F9D6151fD324BA86Cc2B097226208e976e4**;
+
+   function whoami() public view returns(adress) {
+      return _me
+   }
+   function one() public pure returns(uint256) {
+      return 1;
+   }   
 }
-
-//Ecrivez un contrat TheOne. Ce contrat devra posséder une fonction one qui retournera le nombre 1 lorsqu'elle sera appelée.
-
-// https://rinkeby.etherscan.io/tx/0xa15f94cbaadc732e103837cce7f9f2a2dbe34f101ffeea2e2689d9bbfd5a7136
