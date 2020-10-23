@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.6.0;
 
+// Deployed at address: 0xc311D39FbD47F122ba89Cb4EBdB9b06bc3deEf**
 contract FirstErc20 {
   // Mapping from account addresses to current balance.
   mapping(address => uint256) private _balances;
-  mapping(address => bool) private _admins;
 
   // Mapping from account addresses to a mapping of spender addresses to an amount of allowance.
   mapping(address => mapping(address => uint256)) private _allowances;
@@ -43,12 +43,14 @@ contract FirstErc20 {
     _totalSupply = amount2Owner;
     _balances[msg.sender] = amount2Owner;
     _ownerAddress = msg.sender;
-    _admins[msg.sender] = true;
   }
 
   // A modifier for checking if the msg.sender is the owner.
-  modifier onlyAdmin() {
-    require(_admins[msg.sender], 'ERC20: Only admins can perform this action');
+  modifier onlyOwner() {
+    require(
+      msg.sender == _ownerAddress,
+      'ERC20: Only owner can perform this action'
+    );
     _;
   }
 
@@ -75,11 +77,6 @@ contract FirstErc20 {
   // Returns the max amount of tokens in existence
   function cap() public view returns (uint256) {
     return _cap;
-  }
-
-  // Returns a `true` if `_account` is admin else `false`
-  function isAdmin(address _account) public view returns (bool) {
-    return _admins[_account];
   }
 
   // Returns the amount of tokens owned by `_account`.
@@ -148,7 +145,7 @@ contract FirstErc20 {
   // Emits a `Transfer` event with `_from` set to the zero address.
   function mint(address _account, uint256 _amount)
     public
-    onlyAdmin
+    onlyOwner
     returns (bool)
   {
     require(_totalSupply + _amount <= _cap, 'ERC20: cap exceeded');
@@ -156,31 +153,6 @@ contract FirstErc20 {
     _balances[_account] += _amount;
     emit Transfer(address(0), _account, _amount);
     return true;
-  }
-
-  // Burns `_amount` tokens from `_account` balance.
-  function burn(address _account, uint256 _amount)
-    public
-    onlyAdmin
-    returns (bool)
-  {
-    uint256 _burntAmount = _balances[_account] >= _amount
-      ? _amount
-      : _balances[_account];
-    _totalSupply -= _burntAmount;
-    _balances[_account] -= _burntAmount;
-    emit Transfer(_account, address(0), _amount);
-    return true;
-  }
-
-  // Adds `_account` administrator
-  function addAdmin(address _account) public onlyAdmin {
-    _admins[_account] = true;
-  }
-
-  // Revokes administrator rights for `acount`
-  function delAdmin(address _account) public onlyAdmin {
-    _admins[_account] = false;
   }
 
   // Emitted when `_value` tokens are moved from one account (`_from`) to another (`_to`)

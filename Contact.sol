@@ -1,20 +1,40 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.7.3;
-pragma experimental ABIEncoderV2
+// SPDX-License-Identifier: MIT                 
+pragma solidity ^0.6.0;
+pragma experimental ABIEncoderV2;
 
-contract ContactPeople {
+contract Contact {
+  struct Info {
+    string name;
+    uint8 age;
+    string email;
+    string phone;
+  }
 
-    struct EveryBody {
-         string name; 
-         string email;
-         string phone;
-        }   
+  mapping(address => Info) private _contacts;
 
-        Person private owner
-         function getContact (string _name, string memory _addr, string memory _email) public {
-             owner = Person(_ name, _addr, _email)
-         }
-    }
+  constructor() public {
+    _contacts[0x57D401B8502bC5CBBaAfD2564236dE45711650**] = Info(
+      'Alice',
+      25,
+      'alice@mail.com',
+      '123123'
+    );
+  }
+
+  function getContact(address _addr) public view returns (Info memory) {
+    return _contacts[_addr];
+  }
+
+  function setContact(
+    address _addr,
+    string memory _name,
+    uint8 _age,
+    string memory _email,
+    string memory _phone
+  ) public {
+    _contacts[_addr] = Info(_name, _age, _email, _phone);
+  }
+}
     /* Ecrivez un contrat Contact qui permettra d'enregistrer ou de récupérer des info sur un contact 
     en fonction de son adresse Ethereum. Les informations pour chaque contact seront stockées dans une 
     struct avec les champs suivants: string name, string email, string phone.
